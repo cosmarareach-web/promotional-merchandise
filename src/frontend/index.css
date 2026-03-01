@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Dark Cosmic Theme — Deep Space Navy */
+    --background: 0.08 0.025 270;
+    --foreground: 0.95 0.01 90;
+    --card: 0.11 0.03 265;
+    --card-foreground: 0.95 0.01 90;
+    --popover: 0.13 0.03 265;
+    --popover-foreground: 0.95 0.01 90;
+    --primary: 0.72 0.18 65;
+    --primary-foreground: 0.08 0.025 270;
+    --secondary: 0.18 0.04 265;
+    --secondary-foreground: 0.95 0.01 90;
+    --muted: 0.15 0.03 265;
+    --muted-foreground: 0.65 0.03 270;
+    --accent: 0.72 0.18 65;
+    --accent-foreground: 0.08 0.025 270;
+    --destructive: 0.58 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.25 0.05 265;
+    --input: 0.20 0.04 265;
+    --ring: 0.72 0.18 65;
+
+    --chart-1: 0.72 0.18 65;
+    --chart-2: 0.58 0.18 250;
+    --chart-3: 0.55 0.20 145;
+    --chart-4: 0.65 0.22 30;
+    --chart-5: 0.70 0.16 300;
+
+    --sidebar: 0.10 0.03 265;
+    --sidebar-foreground: 0.95 0.01 90;
+    --sidebar-primary: 0.72 0.18 65;
+    --sidebar-primary-foreground: 0.08 0.025 270;
+    --sidebar-accent: 0.18 0.04 265;
+    --sidebar-accent-foreground: 0.95 0.01 90;
+    --sidebar-border: 0.25 0.05 265;
+    --sidebar-ring: 0.72 0.18 65;
+
+    /* Custom gold & cosmic tokens */
+    --gold: 0.72 0.18 65;
+    --gold-bright: 0.80 0.20 68;
+    --gold-dim: 0.55 0.14 65;
+    --cosmic-deep: 0.05 0.02 270;
+    --cosmic-mid: 0.12 0.04 265;
+    --cosmic-glow: 0.35 0.12 250;
+    --android-green: 0.65 0.20 145;
+    --ios-blue: 0.58 0.18 250;
+    --desktop-purple: 0.58 0.22 300;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, oklch(0.15 0.06 270 / 0.6) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, oklch(0.12 0.05 250 / 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 100%, oklch(0.10 0.04 280 / 0.4) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+}
+
+/* Stars background animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes gold-pulse {
+  0%, 100% { text-shadow: 0 0 20px oklch(0.72 0.18 65 / 0.5), 0 0 40px oklch(0.72 0.18 65 / 0.3); }
+  50% { text-shadow: 0 0 30px oklch(0.72 0.18 65 / 0.8), 0 0 60px oklch(0.72 0.18 65 / 0.5), 0 0 80px oklch(0.72 0.18 65 / 0.2); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-glow-text {
+  color: oklch(0.80 0.20 68);
+  animation: gold-pulse 3s ease-in-out infinite;
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    oklch(0.72 0.18 65) 0%,
+    oklch(0.90 0.15 80) 40%,
+    oklch(0.72 0.18 65) 60%,
+    oklch(0.85 0.18 70) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+.card-cosmic {
+  background: linear-gradient(135deg,
+    oklch(0.12 0.04 265 / 0.9) 0%,
+    oklch(0.10 0.03 270 / 0.95) 100%
+  );
+  border: 1px solid oklch(0.72 0.18 65 / 0.25);
+  box-shadow:
+    0 0 20px oklch(0.72 0.18 65 / 0.06),
+    inset 0 1px 0 oklch(0.72 0.18 65 / 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-cosmic:hover {
+  border-color: oklch(0.72 0.18 65 / 0.55);
+  box-shadow:
+    0 0 30px oklch(0.72 0.18 65 / 0.18),
+    0 8px 32px oklch(0.05 0.02 270 / 0.6),
+    inset 0 1px 0 oklch(0.72 0.18 65 / 0.2);
+  transform: translateY(-4px);
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(0.72 0.18 65 / 0.4) 30%,
+    oklch(0.80 0.20 68 / 0.7) 50%,
+    oklch(0.72 0.18 65 / 0.4) 70%,
+    transparent 100%
+  );
+}
+
+.btn-android {
+  background: linear-gradient(135deg, oklch(0.55 0.18 145) 0%, oklch(0.45 0.16 145) 100%);
+  border: 1px solid oklch(0.65 0.20 145 / 0.5);
+  box-shadow: 0 0 20px oklch(0.65 0.20 145 / 0.25);
+  transition: all 0.3s ease;
+}
+.btn-android:hover {
+  box-shadow: 0 0 35px oklch(0.65 0.20 145 / 0.5), 0 8px 24px oklch(0.05 0.02 270 / 0.5);
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.15);
+}
+
+.btn-ios {
+  background: linear-gradient(135deg, oklch(0.48 0.18 250) 0%, oklch(0.40 0.16 250) 100%);
+  border: 1px solid oklch(0.58 0.18 250 / 0.5);
+  box-shadow: 0 0 20px oklch(0.58 0.18 250 / 0.25);
+  transition: all 0.3s ease;
+}
+.btn-ios:hover {
+  box-shadow: 0 0 35px oklch(0.58 0.18 250 / 0.5), 0 8px 24px oklch(0.05 0.02 270 / 0.5);
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.15);
+}
+
+.btn-desktop {
+  background: linear-gradient(135deg, oklch(0.48 0.20 300) 0%, oklch(0.40 0.18 300) 100%);
+  border: 1px solid oklch(0.58 0.22 300 / 0.5);
+  box-shadow: 0 0 20px oklch(0.58 0.22 300 / 0.25);
+  transition: all 0.3s ease;
+}
+.btn-desktop:hover {
+  box-shadow: 0 0 35px oklch(0.58 0.22 300 / 0.5), 0 8px 24px oklch(0.05 0.02 270 / 0.5);
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.15);
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: twinkle linear infinite;
+}
