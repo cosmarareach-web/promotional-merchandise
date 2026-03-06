@@ -12,8 +12,12 @@ process.env.II_URL = process.env.II_URL || ii_url;
 process.env.STORAGE_GATEWAY_URL =
   process.env.STORAGE_GATEWAY_URL || "https://blob.caffeine.ai";
 
+const repositoryName = process.env.GITHUB_REPOSITORY?.split("/")[1] || "";
+const githubPagesBase = repositoryName ? `/${repositoryName}/` : "/";
+
 export default defineConfig({
   logLevel: "error",
+  base: process.env.GITHUB_ACTIONS ? githubPagesBase : "/",
   build: {
     emptyOutDir: true,
     sourcemap: false,
